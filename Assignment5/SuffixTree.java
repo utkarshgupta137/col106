@@ -91,15 +91,16 @@ public class SuffixTree {
     }
 
     private static List<String> match(List<String> lines) {
-        text = lines.get(0) + "$";
+        text = lines.remove(0) + "$";
         for (int i = 0; i < text.length(); i++) {
             addSuffix(root, i);
         }
 
-        int n = Integer.valueOf(lines.get(1));
+        int n = Integer.valueOf(lines.remove(0));
         ArrayList<String> output = new ArrayList<String>(n);
-        for (int i = 2; i < n + 2; i++) {
-            output.addAll(search(root, 0, 0, lines.get(i)));
+        for (String s : lines) {
+            output.addAll(search(root, 0, 0, s));
+        }
         }
         return output;
     }
